@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Torneio de Robotica</title>
+            </f:facet>
+            <h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
+        </h:head>
+
+        <h:body>
+            <ui:include src="menu.xhtml"/> <br/>
+            <h:form id="formulario">
+                <p:panel header="Desafio Cabo de Guerra - Placar">    
+                    <h:panelGrid>
+                        <h:dataTable id="tabelaEquipes" value="#{caboDeGuerraBean.lista}" var="lista" 
+                                     style="text-align: center" rules="rows">
+
+                            <p:column headerText="Equipe 1" sortBy="#{lista.nomeEquipe1}" >
+                                <p:outputLabel value="#{lista.nomeEquipe1}"/>
+                            </p:column>
+                            <p:column headerText="Pontos" sortBy="#{lista.total1}" >
+                                <h:outputText value="#{lista.total1}"/>
+                            </p:column>
+
+                        </h:dataTable>
+
+                    </h:panelGrid>
+                </p:panel>
+
+            </h:form>    
+        </h:body>
+    </f:view>    
+</html>

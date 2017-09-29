@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>Torneio de Robótica</title>
+        </f:facet>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta http-equiv="X-UA-Conpatible" content="IE-edge"/>
+        <!--<meta http-equiv="refresh" content="10"/>-->
+        <h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
+    </h:head>
+    <h:body>
+        <ui:include src="menu.xhtml"/> <br/>
+        <div id="topo">
+
+            <p:growl id="msgs"/>
+            <h:form id="checkin">
+                <p:panel header="EQUIPES" style="text-align: center">    
+                    <h:panelGrid>     
+                        <p:dataTable id="tabelaCheckin" value="#{cadastroBean.lista}" widgetVar="dadosTable" var="cadastro" 
+                                     emptyMessage="Dados não encontrados" style="font-size: 13px" paginator="true" 
+                                     rows="20" rowsPerPageTemplate="10,15,20,50,100" >
+                            <f:facet name="header">
+                                <p:outputPanel>
+                                    <h:outputText value="Procurar: " />
+                                    <p:inputText id="globalFilter" onkeyup="PF('dadosTable').filter()" style="width:150px" />
+                                </p:outputPanel>
+                            </f:facet>
+
+
+                            <p:column filterBy="#{cadastro.equipe}" headerText="Equipe" sortBy="#{cadastro.equipe}" filterMatchMode="contains" 
+                                      filterStyle="display:none">
+                                <h:outputText value="#{cadastro.equipe}"/>
+                            </p:column>
+
+
+                            <p:column filterBy="#{cadastro.nomeEscola}" headerText="Escola" filterMatchMode="contains" filterStyle="display:none">
+                                <h:outputText value="#{cadastro.nomeEscola}"/>
+                            </p:column>
+
+                            <p:column filterBy="#{cadastro.evento}" headerText="Evento" sortBy="#{cadastro.evento}" 
+                                      filterMatchMode="contains" filterStyle="display:none">
+                                <h:outputText value="#{cadastro.evento}"/>
+                            </p:column>
+
+                            <p:column filterBy="#{cadastro.desafio}" headerText="Desafio" sortBy="#{cadastro.desafio}" filterMatchMode="contains" filterStyle="display:none">
+                                <h:outputText value="#{cadastro.desafio}"/>
+                            </p:column>
+
+                            <p:column headerText="Editar" style="width:32px">
+                                <h:commandLink action="#{cadastroBean.editar}">
+                                    <h:graphicImage library="imagens" 
+                                                    name="editar.png" style="border:0"/>
+                                    <f:setPropertyActionListener target="#{cadastroBean.cadastro}" value="#{cadastro}"/>
+                                </h:commandLink>
+                            </p:column>
+
+                            <p:column filterBy="#{cadastro.checkin}" headerText="Check-in" sortBy="#{cadastro.checkin}"
+                                      filterMatchMode="contains" filterStyle="display:none" style="width:70px">
+                                <h:commandLink action="#{cadastroBean.checkin()}">
+                                    <h:graphicImage library="imagens" 
+                                                    name="checkin_#{cadastro.checkin}.png" style="border:0"/>
+                                    <f:setPropertyActionListener target="#{cadastroBean.cadastro}" value="#{cadastro}"/>
+                                    <p:ajax update="tabelaCheckin :msgs" />
+                                </h:commandLink>
+                            </p:column>
+
+                            <p:column headerText="Excluir" style="width:40px">
+                                <h:commandLink action="#{cadastroBean.excluir()}" 
+                                               onclick="if (!confirm('Confirma a exclusão do time de #{cadastro.equipe}?'))
+                                                           return false;">
+                                    <h:graphicImage library="imagens" name="delete.png" 
+                                                    style="border:0"/>
+                                    <f:setPropertyActionListener target="#{cadastroBean.cadastro}" value="#{cadastro}"/>
+                                </h:commandLink>
+                            </p:column>
+
+
+                            <f:facet name="footer">
+                                Equipes Cadastradas no TJR
+                            </f:facet>
+
+                        </p:dataTable>
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+        </div>    
+    </h:body>
+</html>    

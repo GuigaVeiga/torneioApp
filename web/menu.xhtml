@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Torneio de Robotica</title>
+            </f:facet>
+            <link rel="StyleSheet" type="text/css" href="css/estilos.css" media="screen"/>
+        </h:head>
+
+        <h:body>
+        <ui:composition>    
+        <div>
+            <h:form>  
+                    <p:menubar>
+                        
+                        <p:submenu label="Home">
+                            <p:menuitem value="Pagina Principal" outcome="index"/>
+                        </p:submenu>
+                        
+                        <p:submenu label="Equipes" icon="ui-icon-person">
+                            <p:menuitem value="Novo Cadastro" action="#{cadastroBean.novo()}" icon="ui-icon-plusthick"/>
+                            <p:menuitem value="Chek-in" outcome="checkin" icon="ui-icon-check" />
+                        </p:submenu>
+
+                        <p:submenu label="Desafios" icon="ui-icon-radio-on">
+                            <p:menuitem value="Cabo de Guerra" url="#"  icon="ui-icon-play" />
+                            <p:menuitem value="Dança" url="#" icon="ui-icon-play" />
+                            <p:menuitem value="Resgate no plano" url="#" icon="ui-icon-play" />
+                            <p:menuitem value="Sumô" url="#" icon="ui-icon-play" />
+                            <p:menuitem value="Viagem centro da terra" url="#" icon="ui-icon-play" />
+                        </p:submenu>
+                        
+                        <p:submenu label="Placar" icon="ui-icon-star">
+                            <p:menuitem value="Cabo de Guerra" url="#"  icon="ui-icon-play" />
+                            <p:menuitem value="Dança" url="#" icon="ui-icon-play" />
+                            <p:menuitem value="Resgate no plano" url="#" icon="ui-icon-play" />
+                            <p:menuitem value="Sumô" url="#" icon="ui-icon-play" />
+                            <p:menuitem value="Viagem centro da terra" url="#" icon="ui-icon-play" />
+                            <p:separator/>
+                            <p:menuitem value="Geral" url="#" icon="ui-icon-play" />
+                        </p:submenu>
+
+
+                        <p:submenu label="Regras" icon="ui-icon-script">
+                            <p:menuitem value="Cabo de Guerra" url="#"  icon="ui-icon-play" />
+                            <p:menuitem value="Dança" url="#" icon="ui-icon-play" />
+                            <p:menuitem value="Resgate no plano" url="#" icon="ui-icon-play" />
+                            <p:menuitem value="Sumô" url="#" icon="ui-icon-play" />
+                            <p:menuitem value="Viagem centro da terra" url="#" icon="ui-icon-play" />
+                            <p:separator/>
+                            <p:menuitem value="Geral" url="#" icon="ui-icon-play" />
+                        </p:submenu>
+                        <f:facet name="options">
+                            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+                        </f:facet>
+                    </p:menubar>
+                </h:form>
+        </div>
+        </ui:composition>     
+    </h:body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Torneio de Robotica</title>
+            </f:facet>
+            <h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
+        </h:head>
+
+        <h:body>
+
+            <ui:include src="menu.xhtml"/> <br/>
+            <h:form>
+                <p:wizard style="text-align: center">
+                    <p:tab id="round1" title="Round 1">
+                        <p:panel header="Desafio Cabo de Guerra - Round 1">
+                            <h:panelGrid columns="2" cellspacing="10">
+
+                                <p:selectOneMenu value="#{caboDeGuerraBean.caboDeGuerra.nomeEquipe1}" 
+                                                 filter="true" filterMatchMode="startsWith">
+                                    <f:selectItem itemLabel="Selecione Equipe" noSelectionOption="true" />
+                                    <f:selectItems value="#{cadastroBean.lista}" var="a" itemLabel="#{a.equipe}" itemValue="#{a}"/>
+                                </p:selectOneMenu> 
+
+                                <p:selectOneMenu value="#{caboDeGuerraBean.caboDeGuerra.nomeEquipe2}" label="Selecione Equipe" 
+                                                 filter="true" filterMatchMode="startsWith">
+                                    <f:selectItem itemLabel="Selecione Equipe"  noSelectionOption="true" />
+                                    <f:selectItems value="#{cadastroBean.lista}" var="a" itemLabel="#{a.equipe}" itemValue="#{a}"/>
+                                </p:selectOneMenu>
+
+                                <p:selectOneButton value="#{caboDeGuerraBean.caboDeGuerra.pontos1R1}">
+                                    <f:selectItem itemLabel="Nulo -0" itemValue="" />
+                                    <f:selectItem itemLabel="Arraste Parcial +1" itemValue="1" />
+                                    <f:selectItem itemLabel="Empate + 1" itemValue="1" />
+                                    <f:selectItem itemLabel="Fosso +2" itemValue="2" />
+                                </p:selectOneButton>
+
+                                <p:selectOneButton value="#{caboDeGuerraBean.caboDeGuerra.pontos2R1}" style="margin-left: 40px">
+                                    <f:selectItem itemLabel="Nulo -0" itemValue="" />
+                                    <f:selectItem itemLabel="Arraste Parcial +1" itemValue="1" />
+                                    <f:selectItem itemLabel="Empate + 1" itemValue="1" />
+                                    <f:selectItem itemLabel="Fosso +2" itemValue="2" />
+                                </p:selectOneButton>
+
+                            </h:panelGrid>                         
+                        </p:panel>
+                    </p:tab>
+                    <p:tab id="round2" title="Round 2">
+                        <p:panel header="Desafio Cabo de Guerra - Round 2" >
+                            <h:panelGrid columns="2" cellspacing="10" style="text-align: center">
+
+                                <h:outputText value="#{caboDeGuerraBean.caboDeGuerra.nomeEquipe1}" styleClass="outputLabel"/>
+                                <h:outputText value="#{caboDeGuerraBean.caboDeGuerra.nomeEquipe2}" styleClass="outputLabel"/>
+
+                                <p:selectOneButton value="#{caboDeGuerraBean.caboDeGuerra.pontos1R2}">
+                                    <f:selectItem itemLabel="Nulo -0" itemValue="" />
+                                    <f:selectItem itemLabel="Arraste Parcial +1" itemValue="1" />
+                                    <f:selectItem itemLabel="Empate + 1" itemValue="1" />
+                                    <f:selectItem itemLabel="Fosso +2" itemValue="2" />
+                                </p:selectOneButton>
+
+                                <p:selectOneButton value="#{caboDeGuerraBean.caboDeGuerra.pontos2R2}" style="margin-left: 30px">
+                                    <f:selectItem itemLabel="Nulo -0" itemValue="" />
+                                    <f:selectItem itemLabel="Arraste Parcial +1" itemValue="1" />
+                                    <f:selectItem itemLabel="Empate + 1" itemValue="1" />
+                                    <f:selectItem itemLabel="Fosso +2" itemValue="2" />
+                                </p:selectOneButton>
+
+                            </h:panelGrid>                         
+                        </p:panel>
+                    </p:tab>
+                    <p:tab id="round3" title="Round 3">
+                        <p:panel header="Desafio Cabo de Guerra - Round 3" >
+                            <h:panelGrid columns="2" cellspacing="10" style="text-align: center">
+
+                                <h:outputText value="#{caboDeGuerraBean.caboDeGuerra.nomeEquipe1}" styleClass="outputLabel"/>
+                                <h:outputText value="#{caboDeGuerraBean.caboDeGuerra.nomeEquipe2}" styleClass="outputLabel"/>
+
+                                <p:selectOneButton value="#{caboDeGuerraBean.caboDeGuerra.pontos1R3}">
+                                    <f:selectItem itemLabel="Nulo -0" itemValue="" />
+                                    <f:selectItem itemLabel="Arraste Parcial +1" itemValue="1" />
+                                    <f:selectItem itemLabel="Empate + 1" itemValue="1" />
+                                    <f:selectItem itemLabel="Fosso +2" itemValue="2" />
+                                </p:selectOneButton>
+
+                                <p:selectOneButton value="#{caboDeGuerraBean.caboDeGuerra.pontos2R3}" style="margin-left: 30px">
+                                    <f:selectItem itemLabel="Nulo -0" itemValue="" />
+                                    <f:selectItem itemLabel="Arraste Parcial +1" itemValue="1" />
+                                    <f:selectItem itemLabel="Empate + 1" itemValue="1" />
+                                    <f:selectItem itemLabel="Fosso +2" itemValue="2" />
+                                </p:selectOneButton>
+                            </h:panelGrid> 
+                        </p:panel>
+                    </p:tab>
+                    <p:tab id="confirm" title="Confirmação">
+                        <p:panel>
+                            <h:panelGrid id="confirmation" columns="2" columnClasses="grid,grid" style="text-align: center; margin: 0 auto">
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <h:outputText value="Nome da Equipe 1: " />
+                                    <h:outputText value="#{caboDeGuerraBean.caboDeGuerra.nomeEquipe1}" styleClass="outputLabel"/>
+
+                                    <h:outputText value="Round 1" />
+                                    <h:outputText value="#{caboDeGuerraBean.caboDeGuerra.pontos1R1}" styleClass="outputLabel"/>
+
+                                    <h:outputText value="Round 2" />
+                                    <h:outputText value="#{caboDeGuerraBean.caboDeGuerra.pontos1R2}" styleClass="outputLabel"/>
+
+                                    <h:outputText value="Round 3" />
+                                    <h:outputText value="#{caboDeGuerraBean.caboDeGuerra.pontos1R3}" styleClass="outputLabel"/>
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <h:outputText value="Nome da Equipe 2: " />
+                                    <h:outputText value="#{caboDeGuerraBean.caboDeGuerra.nomeEquipe2}" styleClass="outputLabel"/>
+
+                                    <h:outputText value="Round 1" />
+                                    <h:outputText value="#{caboDeGuerraBean.caboDeGuerra.pontos2R1}" styleClass="outputLabel"/>
+
+                                    <h:outputText value="Round 2" />
+                                    <h:outputText value="#{caboDeGuerraBean.caboDeGuerra.pontos2R2}" styleClass="outputLabel"/>
+
+                                    <h:outputText value="Round 3" />
+                                    <h:outputText value="#{caboDeGuerraBean.caboDeGuerra.pontos2R3}" styleClass="outputLabel"/>
+
+                                    <h:outputText />
+                                    <h:outputText />
+                                </h:panelGrid>
+                                <p:commandButton value="Gravar" action="#{caboDeGuerraBean.inserirEquipe()}" style=" margin-left: 250px"/>    
+                            </h:panelGrid>   
+                        </p:panel>
+                    </p:tab>
+                </p:wizard>
+                <br/>
+                <br/>
+            </h:form>
+        </h:body>
+
+    </f:view>
+</html>
+

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        <title>Torneio de Robotica</title>
+            
+        </f:facet>
+        <title>Torneio de Robotica</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta http-equiv="X-UA-Conpatible" content="IE-edge"/>
+        <h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
+    </h:head>
+    <h:body>
+        <ui:include src="menu.xhtml"/> <br/>
+      
+                <h:form>
+                    <h:inputHidden value="#{cadastroBean.cadastro.id}"/>
+                    <div align="center">
+                        <p:panel header="CADASTRO">
+                            <h:panelGrid id="gridForm" columns="2" >
+                            
+                               
+                                <h:outputText value="Nome da Equipe"/>
+                                <p:inputText value="#{cadastroBean.cadastro.equipe}"/>
+                                
+                                <h:outputText value="Nome da Escola"/>
+                                <p:inputText value="#{cadastroBean.cadastro.nomeEscola}"/>
+                                
+                                <h:outputText value="Evento"/>
+                                <p:inputText value="#{cadastroBean.cadastro.evento}"/>
+                                
+                                <h:outputText value="Desafio"/>
+                                <p:inputText value="#{cadastroBean.cadastro.desafio}"/>
+                                
+                                
+                            </h:panelGrid>
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <p:commandButton value="Salvar" action="#{cadastroBean.salvar()}"/>
+                                <p:commandButton value="Limpar" type="reset"/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </div>
+      
+                    
+                </h:form>     
+    </h:body>
+</html>    

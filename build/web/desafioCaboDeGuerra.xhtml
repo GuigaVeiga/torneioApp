@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Torneio de Robotica</title>
+            </f:facet>
+            <h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
+        </h:head>
+
+        <h:body>
+            <div>
+                <ui:include src="menu.xhtml"/> <br/>
+                <h:form id="formulario">
+
+                    <div id="caboDeGuerra" style="text-align: center">
+
+                        <p:panel id="panel" header="Desafio Cabo de Guerra" >
+                            <p:selectOneButton value="#{caboDeGuerraBean.torneio.round}" required="true">
+                                <f:selectItem itemLabel="Round 1" itemValue="1" />
+                                <f:selectItem itemLabel="Round 2" itemValue="2" />
+                                <f:selectItem itemLabel="Round 3" itemValue="3" />
+                            </p:selectOneButton>
+
+                            <h:panelGrid columns="2" cellspacing="10" style="text-align: center">
+
+                                <p:selectOneMenu id="nome1" value="#{caboDeGuerraBean.torneio.nomeEquipe1}" label="Selecione Equipe" 
+                                                 filter="true" filterMatchMode="startsWith" converter="stateConverter">
+                                    <f:selectItem itemLabel="Selecione Equipe" itemValue="#{null}" noSelectionOption="true" />
+                                    <f:selectItems value="#{cadastroBean.lista}" var="a" itemLabel="#{a.equipe}" itemValue="#{a}"/>
+                                </p:selectOneMenu>
+
+                                <p:selectOneMenu id="nome2" value="#{caboDeGuerraBean.torneio.nomeEquipe2}" label="Selecione Equipe" 
+                                                 filter="true" filterMatchMode="startsWith">
+                                    <f:selectItem itemLabel="Selecione Equipe" itemValue="#{null}" noSelectionOption="true" />
+                                    <f:selectItems value="#{cadastroBean.lista}" var="a" itemLabel="#{a.equipe}" itemValue="#{a}"/>
+                                </p:selectOneMenu>
+
+                                <p:inputText value="#{caboDeGuerraBean.torneio.nomeEquipe1}"/>
+                                <p:inputText value="#{caboDeGuerraBean.torneio.nomeEquipe2}"/>
+
+                                <p:selectOneButton value="#{caboDeGuerraBean.torneio.pontos1}" >
+                                    <f:selectItem itemLabel="Nulo -0" itemValue="" />
+                                    <f:selectItem itemLabel="Arraste Parcial +1" itemValue="1" />
+                                    <f:selectItem itemLabel="Empate + 1" itemValue="1" />
+                                    <f:selectItem itemLabel="Fosso +2" itemValue="2" />
+                                </p:selectOneButton>
+
+                                <p:selectOneButton value="#{caboDeGuerraBean.torneio.pontos2}" style="margin-left: 30px">
+                                    <f:selectItem itemLabel="Nulo -0" itemValue="" />
+                                    <f:selectItem itemLabel="Arraste Parcial +1" itemValue="1" />
+                                    <f:selectItem itemLabel="Empate + 1" itemValue="1" />
+                                    <f:selectItem itemLabel="Fosso +2" itemValue="2" />
+                                </p:selectOneButton>
+
+                                <h:outputText />
+                                <h:outputText />
+
+                            </h:panelGrid>                         
+                        </p:panel>
+                        <p:commandButton value="Gravar" action="#{caboDeGuerraBean.inserirEquipe()}" update="tabelaEquipes" style="width: 240px">
+                           
+                        </p:commandButton>
+                    </div>    
+                    <br/>
+                    <p:dataTable id="tabelaEquipes" value="#{caboDeGuerraBean.torneios}" var="torneios" style="text-align: center">
+                        <p:column headerText="Round" sortBy="#{torneios.round}" >
+                            <h:outputText value="#{torneios.round}"/>
+                        </p:column>
+                        <p:column headerText="Equipe 1" sortBy="#{torneios.nomeEquipe1}" >
+                            <p:outputLabel value="#{torneios.nomeEquipe1}"/>
+                        </p:column>
+                        <p:column headerText="Pontos" sortBy="#{torneios.pontos1}" >
+                            <h:outputText value="#{torneios.pontos1}"/>
+                        </p:column>
+                        <p:column headerText="X">
+                            <h:outputText value="X"/>
+                        </p:column>
+                        <p:column headerText="Pontos" sortBy="#{torneios.pontos2}" >
+                            <h:outputText value="#{torneios.pontos2}"/>
+                        </p:column>
+                        <p:column headerText="Equipe 2" sortBy="#{torneios.nomeEquipe2}" >
+                            <h:outputText value="#{torneios.nomeEquipe2}"/>
+                        </p:column>
+
+                        <p:column>
+                            <p:commandButton  value="REMOVER" action="#{caboDeGuerraBean.removerEquipe(torneios)}" update="tabelaEquipes" />
+                        </p:column>
+                    </p:dataTable>
+
+                </h:form>
+            </div> 
+
+        </h:body>
+
+    </f:view>
+</html>
+
